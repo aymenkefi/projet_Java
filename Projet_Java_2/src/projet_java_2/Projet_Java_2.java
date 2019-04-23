@@ -15,6 +15,7 @@ public class Projet_Java_2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        int x;
         // TODO code application logic here
     }
     
