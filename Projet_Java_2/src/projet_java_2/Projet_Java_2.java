@@ -15,7 +15,8 @@ public class Projet_Java_2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int x;
+        BDD db =  new BDD();
+        db.openConnection();
         // TODO code application logic here
     }
     
