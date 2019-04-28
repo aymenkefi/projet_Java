@@ -20,6 +20,7 @@ public class MyConnection {
             con=DriverManager.getConnection("jdbc:mysql://localhost/projet_java","root","");
         } catch (Exception e) {
                 System.out.println(e.getMessage());
+                String ch ;
         }return con;
     }
     
