@@ -7,6 +7,7 @@ public class Projet_Java_2 {
         int khra ;
         int xxx;
         String ch="hadhemi khra";
+        String ch1="dhiaa kalb";
 
     }
     
