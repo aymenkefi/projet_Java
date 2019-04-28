@@ -21,6 +21,7 @@ public class MyConnection {
         } catch (Exception e) {
                 System.out.println(e.getMessage());
                 String ch ;
+                int x;
         }return con;
     }
     
