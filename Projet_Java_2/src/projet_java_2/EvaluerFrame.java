@@ -16,6 +16,7 @@ public class EvaluerFrame extends javax.swing.JFrame {
      */
     public EvaluerFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
