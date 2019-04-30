@@ -262,7 +262,10 @@ public class InfoConference_frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-
+        ConsulterConference_frame a=new ConsulterConference_frame();
+        a.setVisible(true);
+        a.pack();
+        this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
