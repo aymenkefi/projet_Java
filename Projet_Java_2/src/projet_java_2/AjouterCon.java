@@ -249,19 +249,22 @@ public class AjouterCon extends javax.swing.JFrame {
         // TODO add your handling code here:
         ComiteScien comscien=new ComiteScien();
         comscien.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         ComiteOrganisationFrame comorg=new ComiteOrganisationFrame();
         comorg.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         
-String maysa;        HomeAdmin homeA=new HomeAdmin();
+       HomeAdmin homeA=new HomeAdmin();
         homeA.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4MouseClicked
 
     /**
