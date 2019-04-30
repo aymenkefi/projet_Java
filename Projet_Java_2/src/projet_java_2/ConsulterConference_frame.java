@@ -16,6 +16,7 @@ public class ConsulterConference_frame extends javax.swing.JFrame {
      */
     public ConsulterConference_frame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
