@@ -16,6 +16,7 @@ public class ModifierCon extends javax.swing.JFrame {
      */
     public ModifierCon() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
