@@ -159,10 +159,9 @@ public class Accueil extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         SignUpAdmin sua = new SignUpAdmin();
-         sua.pack();
-        sua.setLocationRelativeTo(null);
-       sua.dispose();
-        
+        sua.setVisible(true);
+        sua.pack();
+        sua.setLocationRelativeTo(null);        
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -170,11 +169,10 @@ public class Accueil extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
         SignIn si = new SignIn();
+        si.setVisible(true);
         si.pack();
         si.setLocationRelativeTo(null);
-        this.dispose();
         
     }//GEN-LAST:event_jButton2MouseClicked
 
