@@ -254,10 +254,10 @@ public class SignUpAdmin extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
-        AjouterCon ac =new AjouterCon();
-        ac.setVisible(true);
-        ac.pack();
-        ac.setLocationRelativeTo(null);
+        HomeAdmin ah =new HomeAdmin();
+        ah.setVisible(true);
+        ah.pack();
+        ah.setLocationRelativeTo(null);
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
