@@ -158,10 +158,10 @@ public class Accueil extends javax.swing.JFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        SignUp su = new SignUp();
-         su.pack();
-        su.setLocationRelativeTo(null);
-       su.dispose();
+        SignUpAdmin sua = new SignUpAdmin();
+         sua.pack();
+        sua.setLocationRelativeTo(null);
+       sua.dispose();
         
     }//GEN-LAST:event_jButton4MouseClicked
 
