@@ -17,6 +17,7 @@ public class AjouterCon extends javax.swing.JFrame {
      */
     public AjouterCon() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
