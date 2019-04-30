@@ -16,6 +16,7 @@ public class Accueil extends javax.swing.JFrame {
      */
     public Accueil() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
