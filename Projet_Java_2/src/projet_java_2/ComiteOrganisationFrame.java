@@ -16,6 +16,7 @@ public class ComiteOrganisationFrame extends javax.swing.JFrame {
      */
     public ComiteOrganisationFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -85,18 +86,18 @@ public class ComiteOrganisationFrame extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 166, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 380, -1));
 
         jScrollPane2.setViewportView(jTextPane2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 166, -1));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 380, -1));
 
         jLabel7.setText("Nom");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
 
         jScrollPane3.setViewportView(jTextPane3);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 166, -1));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 380, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
