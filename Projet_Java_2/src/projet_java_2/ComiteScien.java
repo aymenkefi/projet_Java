@@ -16,6 +16,7 @@ public class ComiteScien extends javax.swing.JFrame {
      */
     public ComiteScien() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
