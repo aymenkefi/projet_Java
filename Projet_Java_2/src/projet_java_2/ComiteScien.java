@@ -74,7 +74,7 @@ public class ComiteScien extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(jEditorPane4);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
         jButton1.setText("Enregistrer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

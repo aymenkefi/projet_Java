@@ -5,6 +5,12 @@
  */
 package projet_java_2;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aymen
@@ -28,7 +34,7 @@ public class SignUpAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btSignupAdmin = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -40,10 +46,10 @@ public class SignUpAdmin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        passAdmin = new javax.swing.JTextField();
         emailAdmin = new javax.swing.JTextField();
         institutionAdmin = new javax.swing.JTextField();
+        passAdmin = new javax.swing.JPasswordField();
+        repassAdmin = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -51,15 +57,15 @@ public class SignUpAdmin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
-        jButton1.setText("SignUp");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btSignupAdmin.setText("SignUp");
+        btSignupAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btSignupAdminMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btSignupAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btSignupAdminActionPerformed(evt);
             }
         });
 
@@ -116,18 +122,6 @@ public class SignUpAdmin extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Verif Mot de passe :");
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-
-        passAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passAdminActionPerformed(evt);
-            }
-        });
-
         emailAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailAdminActionPerformed(evt);
@@ -137,6 +131,18 @@ public class SignUpAdmin extends javax.swing.JFrame {
         institutionAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 institutionAdminActionPerformed(evt);
+            }
+        });
+
+        passAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passAdminActionPerformed(evt);
+            }
+        });
+
+        repassAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repassAdminActionPerformed(evt);
             }
         });
 
@@ -156,25 +162,24 @@ public class SignUpAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(38, 38, 38)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(prenomAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nomAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(pseudoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(passAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(institutionAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 251, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(prenomAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(nomAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(pseudoAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(emailAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(institutionAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(passAdmin)
+                    .addComponent(repassAdmin))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(328, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(284, 284, 284))))
+                        .addComponent(btSignupAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(285, 285, 285))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,18 +203,18 @@ public class SignUpAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(passAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
+                    .addComponent(passAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(repassAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(institutionAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(btSignupAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -256,7 +261,7 @@ public class SignUpAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btSignupAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSignupAdminMouseClicked
 
         HomeAdmin ah =new HomeAdmin();
         ah.setVisible(true);
@@ -264,17 +269,53 @@ public class SignUpAdmin extends javax.swing.JFrame {
         ah.setLocationRelativeTo(null);
         this.dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btSignupAdminMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btSignupAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSignupAdminActionPerformed
+       // TODO add your handling code here:
+       String nomAdmin= this.nomAdmin.getText();
+       String prenomAdmin= this.prenomAdmin.getText();
+       String pseudoAdmin= this.pseudoAdmin.getText();
+       String emailAdmin= this.emailAdmin.getText();
+       String passAdmin= this.passAdmin.getText();
+       String institutionAdmin=this.institutionAdmin.getText();
+       
+        PreparedStatement ps;
+        String query="INSERT INTO `utilisateur`( `login`, `password`, `nom`, `prenom`, `email`, `etat`, `type`, `institution`, `modepaiment`) VALUES (?,?,?,?,?,?,?,?,?)";
+        try {
+            ps=MyConnection.connect().prepareStatement(query);
+            ps.setString(1, pseudoAdmin);
+            ps.setString(2, passAdmin);
+            ps.setString(3, nomAdmin);
+            ps.setString(4, prenomAdmin);
+            ps.setString(5, emailAdmin);
+            ps.setString(6, "admin");
+            ps.setString(7, null);
+            ps.setString(8, institutionAdmin);
+            
+            if(ps.executeUpdate()>0)
+            {JOptionPane.showMessageDialog(null, "admin ajouté");}
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUpAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       
+
+
+
+    }//GEN-LAST:event_btSignupAdminActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        Accueil a =new Accueil();
-        a.setVisible(true);
-        this.dispose();
+        Accueil a;
+        try {
+            a = new Accueil();
+            a.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUpAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void prenomAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prenomAdminActionPerformed
@@ -289,14 +330,6 @@ public class SignUpAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomAdminActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void passAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passAdminActionPerformed
-
     private void emailAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailAdminActionPerformed
@@ -304,6 +337,14 @@ public class SignUpAdmin extends javax.swing.JFrame {
     private void institutionAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_institutionAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_institutionAdminActionPerformed
+
+    private void passAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passAdminActionPerformed
+
+    private void repassAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repassAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_repassAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,9 +382,9 @@ public class SignUpAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btSignupAdmin;
     private javax.swing.JTextField emailAdmin;
     private javax.swing.JTextField institutionAdmin;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -355,10 +396,10 @@ public class SignUpAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField nomAdmin;
-    private javax.swing.JTextField passAdmin;
+    private javax.swing.JPasswordField passAdmin;
     private javax.swing.JTextField prenomAdmin;
     private javax.swing.JTextField pseudoAdmin;
+    private javax.swing.JPasswordField repassAdmin;
     // End of variables declaration//GEN-END:variables
 }

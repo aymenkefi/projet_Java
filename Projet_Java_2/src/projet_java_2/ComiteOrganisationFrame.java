@@ -39,9 +39,9 @@ public class ComiteOrganisationFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        nomcomiteorga = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        prenomcomorga = new javax.swing.JTextPane();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,7 +56,7 @@ public class ComiteOrganisationFrame extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 173, -1, 20));
 
         jButton3.setText("Retour");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,11 +70,11 @@ public class ComiteOrganisationFrame extends javax.swing.JFrame {
         jLabel1.setText("Ajouter les membres de comité d'organisation");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 30, -1, -1));
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(nomcomiteorga);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 380, -1));
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(prenomcomorga);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 380, -1));
 
@@ -93,6 +93,24 @@ public class ComiteOrganisationFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String nom=nomcomiteorga.getText();
+        String prenom=prenomcomorga.getText();
+        PreparedStatement ps;
+        String query="INSERT INTO `commite`( `nom`, `prenom`) VALUES (?,?)";
+        String query1="INSERT INTO `organiser`(`conference_id`, `organisateur_id`) VALUES (?,?)";
+        try {
+            ps=MyConnection.connect().prepareStatement(query);
+            ps.setString(1, nom);
+            ps.setString(2, prenom);
+            if (ps.executeUpdate()>0) {
+                JOptionPane.showMessageDialog(null, "Ajout succes");
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ComiteOrganisationFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         
         
        
@@ -144,7 +162,7 @@ public class ComiteOrganisationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane nomcomiteorga;
+    private javax.swing.JTextPane prenomcomorga;
     // End of variables declaration//GEN-END:variables
 }

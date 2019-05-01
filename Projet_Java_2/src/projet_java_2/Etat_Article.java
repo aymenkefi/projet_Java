@@ -5,6 +5,10 @@
  */
 package projet_java_2;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author dhias
@@ -134,9 +138,15 @@ public class Etat_Article extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
-        Accueil a =new Accueil();
-        a.setVisible(true);
-        a.pack();
+        Accueil a;
+        try {
+            a = new Accueil();
+            a.setVisible(true);
+            a.pack();
+        } catch (SQLException ex) {
+            Logger.getLogger(Etat_Article.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
