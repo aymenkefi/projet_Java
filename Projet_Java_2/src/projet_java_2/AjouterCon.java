@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,11 +37,6 @@ public class AjouterCon extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateChooserDialog1 = new datechooser.beans.DateChooserDialog();
-        dateChooserDialog2 = new datechooser.beans.DateChooserDialog();
-        dateChooserDialog3 = new datechooser.beans.DateChooserDialog();
-        dateChooserDialog4 = new datechooser.beans.DateChooserDialog();
-        dateChooserDialog5 = new datechooser.beans.DateChooserDialog();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -424,11 +420,6 @@ public class AjouterCon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private datechooser.beans.DateChooserDialog dateChooserDialog1;
-    private datechooser.beans.DateChooserDialog dateChooserDialog2;
-    private datechooser.beans.DateChooserDialog dateChooserDialog3;
-    private datechooser.beans.DateChooserDialog dateChooserDialog4;
-    private datechooser.beans.DateChooserDialog dateChooserDialog5;
     private com.toedter.calendar.JDateChooser dateconferance;
     private com.toedter.calendar.JDateChooser datefin;
     private com.toedter.calendar.JDateChooser datelimite;
