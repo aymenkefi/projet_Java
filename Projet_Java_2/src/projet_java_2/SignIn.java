@@ -193,6 +193,11 @@ public class SignIn extends javax.swing.JFrame {
             if(rs.next())
             {
                 JOptionPane.showMessageDialog(null, "welcome boss");
+                HomeAdmin eval =new HomeAdmin();
+                eval.setVisible(true);
+                eval.pack();
+                eval.setLocationRelativeTo(null);
+        this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "wrong passwordl    ");
 
