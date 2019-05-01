@@ -49,6 +49,11 @@ public class ModifierCon extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Modifier");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Annuler");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,6 +96,13 @@ public class ModifierCon extends javax.swing.JFrame {
         HomeAdmin had=new HomeAdmin();
         had.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        ModifierInfiConf modif=new ModifierInfiConf();
+        modif.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
