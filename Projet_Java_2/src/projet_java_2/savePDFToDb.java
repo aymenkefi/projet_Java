@@ -23,9 +23,7 @@ import java.sql.Statement;
 public class savePDFToDb {
     public static void main(String[] args) {
         DB db = new DB();
-        Connection conn=db.dbConnect(
-                "jdbc:jtds:sqlserver://localhost:1433/smpp","sa","");
-         
+        Connection conn=db.dbConnect("jdbc:jtds:sqlserver://localhost:1433/smpp","sa","");
         db.insertPDF(conn,"d://servlet//jdbc//test.pdf");
         db.getPDFData(conn);
     }
