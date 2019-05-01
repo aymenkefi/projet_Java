@@ -49,6 +49,11 @@ public class HomeAdmin extends javax.swing.JFrame {
         });
 
         jButton2.setText("Gestion de conférence");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Gestion de conférenciers invités");
 
@@ -109,7 +114,15 @@ public class HomeAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         AjouterCon Acon=new AjouterCon();
         Acon.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        ModifierCon modif=new ModifierCon();
+        modif.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
