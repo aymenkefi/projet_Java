@@ -7,22 +7,40 @@ package projet_java_2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import com.mysql.jdbc.Driver;
+import static java.lang.Class.forName;
+import java.sql.SQLException;
 
 /**
  *
  * @author dhias
  */
 public class MyConnection {
-    public static   Connection getConnection(){
-            Connection con=null;
-            try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost/projet_java","root","");
-        } catch (Exception e) {
-                System.out.println(e.getMessage());
-                String ch ;
-                int x;
-        }return con;
+    public static Connection connect()
+    {
+      Connection con=null;
+      try {
+
+      Class.forName("com.mysql.jdbc.Driver");
+      con=DriverManager.getConnection("jdbc:mysql://localhost:3306/projetjava","root","");
+          JOptionPane.showConfirmDialog(null, "good");
+
+      }catch (SQLException | ClassNotFoundException e){
+          System.out.println("ERROR "+e.getMessage());
+      }
+
+      return con;
+
     }
+
     
+    
+        
+    
+            
+        
+
+   
 }
