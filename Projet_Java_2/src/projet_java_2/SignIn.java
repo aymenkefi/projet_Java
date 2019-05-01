@@ -46,6 +46,8 @@ public class SignIn extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusableWindowState(false);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
