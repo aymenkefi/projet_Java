@@ -21,7 +21,7 @@ public class MyConnection {
     public static Connection connect()
     {
       Connection con=null;
-      int xx;
+      int xxx;
       try {
 
       Class.forName("com.mysql.jdbc.Driver");
