@@ -30,17 +30,7 @@ public class Accueil extends javax.swing.JFrame {
     public Accueil() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
-        try {
-        Connection conn = MyConnection.connect();
-        PreparedStatement st;
-        ResultSet rt;
-        String query="INSERT INTO `utilisateur`( `login`, `password`, `nom`, `prenom`, `email`, `etat`, `type`, `institution`) VALUES (?,?,?,?,?,?,?,?)";
-        st=conn.prepareStatement(query);
-        st.setString(1,"dhia");
-        st.setString(2, "souidi");        
-        rt=st.executeQuery();
-        } catch (Exception e) {
-        }
+        
        
         
 
@@ -88,6 +78,11 @@ public class Accueil extends javax.swing.JFrame {
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -177,12 +172,17 @@ public class Accueil extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        SignIn si = new SignIn();
+       connecter si = new connecter();
         si.setVisible(true);
         si.pack();
         si.setLocationRelativeTo(null);
+        this.dispose();
         
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

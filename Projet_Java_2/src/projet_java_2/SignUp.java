@@ -284,11 +284,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
-        EvaluerArticleFrame eval =new EvaluerArticleFrame();
-        eval.setVisible(true);
-        eval.pack();
-        eval.setLocationRelativeTo(null);
-        this.dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -322,7 +318,7 @@ public class SignUp extends javax.swing.JFrame {
             if(ps.executeUpdate()>0)
             {JOptionPane.showMessageDialog(null, "user ajouté");}
         } catch (SQLException ex) {
-            Logger.getLogger(SignUpAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -356,6 +352,7 @@ public class SignUp extends javax.swing.JFrame {
         try {
             a = new Accueil();
             a.setVisible(true);
+            a.pack();
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);

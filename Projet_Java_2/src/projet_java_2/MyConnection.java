@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import com.mysql.jdbc.Driver;
+import com.mysql.jdbc.Driver; 
 import static java.lang.Class.forName;
 import java.sql.SQLException;
 

@@ -133,6 +133,7 @@ public class HomeAdmin extends javax.swing.JFrame {
         Acon.setVisible(true);
         Acon.setVisible(true);
             Acon.pack();
+            this.dispose();
             
     }//GEN-LAST:event_jButton1MouseClicked
 

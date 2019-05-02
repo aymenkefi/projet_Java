@@ -5,11 +5,19 @@
  */
 package projet_java_2;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author TheOne
  */
 public class ComiteScien extends javax.swing.JFrame {
+    public static int currentcommite=0;
 
     /**
      * Creates new form ComiteScien
@@ -34,16 +42,19 @@ public class ComiteScien extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
+        nom = new javax.swing.JEditorPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jEditorPane2 = new javax.swing.JEditorPane();
+        prenom = new javax.swing.JEditorPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jEditorPane3 = new javax.swing.JEditorPane();
+        mail = new javax.swing.JEditorPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jEditorPane4 = new javax.swing.JEditorPane();
+        pass = new javax.swing.JEditorPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        login = new javax.swing.JEditorPane();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,27 +65,27 @@ public class ComiteScien extends javax.swing.JFrame {
         jLabel8.setText("Prenom");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
-        jLabel9.setText("Username");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        jLabel9.setText("email");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         jLabel10.setText("Password");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
-        jScrollPane1.setViewportView(jEditorPane1);
+        jScrollPane1.setViewportView(nom);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
 
-        jScrollPane2.setViewportView(jEditorPane2);
+        jScrollPane2.setViewportView(prenom);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
-        jScrollPane3.setViewportView(jEditorPane3);
+        jScrollPane3.setViewportView(mail);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
-        jScrollPane4.setViewportView(jEditorPane4);
+        jScrollPane4.setViewportView(pass);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
 
         jButton1.setText("Enregistrer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -95,11 +106,58 @@ public class ComiteScien extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
 
+        jScrollPane5.setViewportView(login);
+
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+
+        jLabel11.setText("Username");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String nom=this.nom.getText();
+        String prenom=this.prenom.getText();
+        String login=this.mail.getText();
+        String pass=this.pass.getText();
+        String email=this.mail.getText();
+        PreparedStatement ps;
+        /*String query="INSERT INTO `commite`(`nom`, `prenom`, `email`, `institution`, `type`) VALUES (?,?,?,?,?)";
+        try {
+            ps=MyConnection.connect().prepareStatement(query);
+            ps.setString(1, nom);
+            ps.setString(2, prenom);
+            ps.setString(3, email);
+            ps.setString(4, "");
+            ps.setString(5, "comitescien");
+            if (ps.executeUpdate()>0) {
+                JOptionPane.showMessageDialog(null, "Ajout succes");
+                currentcommite=currentcomite();
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ComiteOrganisationFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        String query1="INSERT INTO `commite`( `nom`, `prenom`, `email`, `type`) VALUES (?,?,?,?)";
+        try {
+            ps=MyConnection.connect().prepareStatement(query1);
+            ps.setString(1,nom);
+            ps.setString(2, prenom);
+            ps.setString(3, email);
+            ps.setString(4, "comitescien");
+            
+
+            if (ps.executeUpdate()>0) {
+                JOptionPane.showMessageDialog(null, "Ajout succes");
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ComiteOrganisationFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -143,16 +201,33 @@ public class ComiteScien extends javax.swing.JFrame {
             }
         });
     }
+    public int currentcomite(){
+        int id=0;
+        PreparedStatement ps;
+        ResultSet rs;
+        String nom= this.nom.getText();
+        String query="SELECT `utilisateur_id` FROM `utilisateur` WHERE `nom`=?";
+        try {
+            ps=MyConnection.connect().prepareStatement(query);
+            ps.setString(1, nom);
+            rs=ps.executeQuery();
+           while(rs.next()){
+        id=rs.getInt("utilisateur_id");
+    }
+        } catch (SQLException ex) {
+            Logger.getLogger(SignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return id;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JEditorPane jEditorPane2;
-    private javax.swing.JEditorPane jEditorPane3;
-    private javax.swing.JEditorPane jEditorPane4;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -160,5 +235,11 @@ public class ComiteScien extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JEditorPane login;
+    private javax.swing.JEditorPane mail;
+    private javax.swing.JEditorPane nom;
+    private javax.swing.JEditorPane pass;
+    private javax.swing.JEditorPane prenom;
     // End of variables declaration//GEN-END:variables
 }
