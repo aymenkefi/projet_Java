@@ -5,11 +5,30 @@
  */
 package projet_java_2;
 
+import java.awt.HeadlessException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author dhias
  */
 public class EvaluerArticleFrame extends javax.swing.JFrame {
+    ResultSet rs;
+    PreparedStatement ps;
+    static String art="";
+
 
     /**
      * Creates new form EvaluerArticleFrame
@@ -17,6 +36,8 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
     public EvaluerArticleFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        fetch();
+
     }
 
     /**
@@ -35,7 +56,7 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -71,6 +92,11 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
 
         jButton1.setText("Télecharger fichier");
         jButton1.setActionCommand("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("VAGRounded BT", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,7 +106,7 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Titre");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,7 +117,8 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(jTable1);
+        table.setName(""); // NOI18N
+        jScrollPane6.setViewportView(table);
 
         jLabel4.setFont(new java.awt.Font("VAGRounded BT", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,16 +214,78 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Connection con=MyConnection.connect();
+        try {
+        DefaultTableModel model=(DefaultTableModel)table.getModel();
+        int selectedrow=table.getSelectedRow();
+        art=model.getValueAt(selectedrow,0).toString();
+        EvaluerFrame eval;
+        eval = new EvaluerFrame();
+        eval.setVisible(true);
+        eval.pack();
+        eval.setLocationRelativeTo(null);
+        this.dispose();
+        
+                  
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e);      
+    }   catch (SQLException ex) {   
+            Logger.getLogger(EvaluerArticleFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }   
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        EvaluerFrame evalf =new EvaluerFrame();
-        evalf.setVisible(true);
+        EvaluerFrame evalf;
+        try {
+            evalf = new EvaluerFrame();
+            evalf.setVisible(true);
         evalf.pack();
         evalf.setLocationRelativeTo(null);
+        } catch (SQLException ex) {
+            Logger.getLogger(EvaluerArticleFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model=(DefaultTableModel)table.getModel();
+        int selectedrow=table.getSelectedRow();
+        art=model.getValueAt(selectedrow,0).toString();
+        
+         try {
+         ps=MyConnection.connect().prepareStatement("SELECT nom , contenu FROM article WHERE nom=? ");
+         ps.setString(1, art);
+        rs = ps.executeQuery();
+     
+     
+        if (rs.next()) {
+  
+          String filename = rs.getString(1);
+           Blob blob = rs.getBlob(2);
+          InputStream is = blob.getBinaryStream();
+              FileOutputStream fos = new FileOutputStream("C:\\Users\\Aymen\\Desktop"+ "\\" + filename+".pdf");
+ 
+int b = 0;
+while ((b = is.read()) != -1)
+{
+    fos.write(b); 
+}
+        }
+    } catch (IOException e) 
+    {
+    e.getMessage (); e.printStackTrace(); 
+System.out.println(e); 
+    } 
+    catch (SQLException e) 
+    {
+    e.getMessage (); e.printStackTrace(); 
+System.out.println(e); 
+    }
+  
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,8 +319,29 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
             public void run() {
                 new EvaluerArticleFrame().setVisible(true);
             }
-        });
+        });    
+    
     }
+            public void fetch(){
+            Connection con=MyConnection.connect();
+        try {
+            String query="SELECT nom  FROM article";
+            ps=con.prepareStatement(query);
+            rs=ps.executeQuery();
+            table.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            
+            
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -245,6 +355,6 @@ public class EvaluerArticleFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,9 +5,18 @@
  */
 package projet_java_2;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.spi.DirStateFactory;
+import com.mysql.jdbc.Driver;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -15,11 +24,15 @@ import java.util.logging.Logger;
  */
 public class Etat_Article extends javax.swing.JFrame {
 
+
     /**
      * Creates new form Etat_Article
      */
     public Etat_Article() {
         initComponents();
+            
+       
+
     }
 
     /**

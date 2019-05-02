@@ -18,24 +18,24 @@ import java.sql.SQLException;
  * @author dhias
  */
 public class MyConnection {
+
+
+    
     public static Connection connect()
     {
       Connection con=null;
-      int xxx;
       try {
 
-      Class.forName("com.mysql.jdbc.Driver");
-      con=DriverManager.getConnection("jdbc:mysql://localhost:3306/projetjava","root","");
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      con=DriverManager.getConnection("jdbc:mysql://localhost:3306/projetjava?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
+
       }catch (SQLException | ClassNotFoundException e){
-          System.out.println("ERROR de connexion"+e.getMessage());
+          System.out.println("ERROR "+e.getMessage());
       }
 
       return con;
 
     }
-
-    
-    
         
     
             

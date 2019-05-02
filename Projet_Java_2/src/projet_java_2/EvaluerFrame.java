@@ -5,18 +5,38 @@
  */
 package projet_java_2;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author dhias
  */
 public class EvaluerFrame extends javax.swing.JFrame {
-
+    PreparedStatement ps;
+    ResultSet rs;
+    Connection con;
     /**
      * Creates new form EvaluerFrame
      */
-    public EvaluerFrame() {
-        initComponents();
+    public EvaluerFrame() throws SQLException {
+         initComponents();
         setLocationRelativeTo(null);
+        String query="SELECT `article_id` FROM `article` WHERE `nom`=?";
+        ps=MyConnection.connect().prepareStatement(query);
+        String ch=EvaluerArticleFrame.art;
+        ps.setString(1, ch);
+        rs=ps.executeQuery();
+    while(rs.next()){
+        id.setText(Integer.toString(rs.getInt("article_id")));
+
+
+    }
+       
     }
 
     /**
@@ -33,7 +53,7 @@ public class EvaluerFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -71,8 +91,8 @@ public class EvaluerFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Titre de l'article");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
+        id.setForeground(new java.awt.Color(255, 255, 255));
+        id.setText("jLabel2");
 
         jLabel5.setFont(new java.awt.Font("VAGRounded BT", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,7 +121,7 @@ public class EvaluerFrame extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(215, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -115,7 +135,7 @@ public class EvaluerFrame extends javax.swing.JFrame {
                 .addGap(83, 83, 83)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,16 +207,20 @@ public class EvaluerFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EvaluerFrame().setVisible(true);
+                try {
+                    new EvaluerFrame().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(EvaluerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel id;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
