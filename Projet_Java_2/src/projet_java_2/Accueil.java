@@ -34,16 +34,14 @@ public class Accueil extends javax.swing.JFrame {
         Connection conn = MyConnection.connect();
         PreparedStatement st;
         ResultSet rt;
-        String query="INSERT INTO `utilisateur`( `login`, `password`, `nom`, `prenom`, `email`, `etat`, `type`, `institution`) VALUES (?,?,?,?,?,?,?,?)";
+        String query="INSERT INTO utilisateur ( `login`, `password`, `nom`, `prenom`, `email`, `etat`, `type`, `institution`) VALUES (?,?,?,?,?,?,?,?)";
         st=conn.prepareStatement(query);
         st.setString(1,"dhia");
         st.setString(2, "souidi");        
         rt=st.executeQuery();
         } catch (Exception e) {
         }
-       
-        
-
+      
     }
 
     /**
