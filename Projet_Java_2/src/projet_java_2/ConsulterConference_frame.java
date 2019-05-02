@@ -209,7 +209,7 @@ public class ConsulterConference_frame extends javax.swing.JFrame {
         // TODO add your handling code here:
         Connection con=MyConnection.connect();
         try {
-            DefaultTableModel model=(DefaultTableModel)tableconf.getModel();
+        DefaultTableModel model=(DefaultTableModel)tableconf.getModel();
         int selectedrow=tableconf.getSelectedRow();
         confer=model.getValueAt(selectedrow,0).toString();
         InfoConference_frame icf;
